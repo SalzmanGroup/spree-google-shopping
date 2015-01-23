@@ -1,0 +1,45 @@
+<%= render 'spree/admin/shared/configuration_menu' %>
+
+<% content_for :page_title do %>
+  <%= Spree.t(:google_shopping_integrations) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= button_link_to Spree.t(:new_google_shopping_integration), new_object_url, :icon => 'plus', :id => 'admin_new_google_shopping_integration_link' %>
+  </li>
+<% end %>
+
+<% if @google_shopping_integrations.any? %>
+  <table class="index">
+    <colgroup>
+      <col style="width: 55%">
+      <col style="width: 30%">
+      <col style="width: 15%">
+    </colgroup>
+    <thead>
+      <tr data-hook="admin_trackers_index_headers">
+        <th><%= Spree.t(:name) %></th>
+        <th><%= Spree.t(:active) %></th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @google_shopping_integrations.each do |google_shopping_integration|%>
+        <tr id="<%= spree_dom_id google_shopping_integration %>" data-hook="admin_google_shopping_integrations_index_rows" class="<%= cycle('odd', 'even')%>">
+          <td class="align-center"><%= google_shopping_integration.name %></td>
+          <td class="align-center"><%= google_shopping_integration.active ? Spree.t(:say_yes) : Spree.t(:say_no) %></td>
+          <td class="actions">
+            <%= link_to_edit google_shopping_integration, :no_text => true %>
+            <%= link_to_delete google_shopping_integration, :no_text => true %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/google_shopping_integration')) %>,
+    <%= link_to Spree.t(:add_one), new_object_url %>!
+  </div>
+<% end %>
