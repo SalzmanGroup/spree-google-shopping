@@ -1,5 +1,6 @@
 # Run Coverage report
 require 'simplecov'
+require 'pry'
 SimpleCov.start do
   add_filter 'spec/dummy'
   add_group 'Controllers', 'app/controllers'
@@ -61,6 +62,10 @@ RSpec.configure do |config|
   # to cleanup after each test instead.  Without transactional fixtures set to false the records created
   # to setup a test will be unavailable to the browser, which runs under a separate server instance.
   config.use_transactional_fixtures = false
+  
+  # rspec-rails 3 will no longer automatically infer an example group's spec type
+  # from the file location.
+  config.infer_spec_type_from_file_location!
 
   # Ensure Suite is set to use transactions for speed.
   config.before :suite do
@@ -70,7 +75,7 @@ RSpec.configure do |config|
 
   # Before each spec check if it is a Javascript test and switch between using database transactions or not where necessary.
   config.before :each do
-    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
+    DatabaseCleaner.strategy = RSpec.current_example.metadata[:js] ? :truncation : :transaction
     DatabaseCleaner.start
   end
 

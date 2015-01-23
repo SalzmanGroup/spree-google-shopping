@@ -1,6 +1,10 @@
 FactoryGirl.define do
-  # Define your Spree extensions Factories within this file to enable applications, and other extensions to use and override them.
-  #
-  # Example adding this to your spec_helper will load these Factories for use:
-  # require 'spree_google_shopping/factories'
+  factory :google_shopping_integration, class: Spree::GoogleShoppingIntegration do
+    name { Faker::Lorem.word }
+    merchant_id { rand.to_s[2..7] }
+    channel 'online'
+    content_language 'en'
+    target_country 'us'
+    active true
+  end
 end
