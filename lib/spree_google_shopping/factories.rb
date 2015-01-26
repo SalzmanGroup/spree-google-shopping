@@ -6,5 +6,6 @@ FactoryGirl.define do
     content_language 'en'
     target_country 'us'
     active true
+    products_scope nil
   end
 end

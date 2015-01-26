@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Spree::GoogleShoppingIntegration do
-  subject { build :google_shopping_integration }
+  subject { build_stubbed :google_shopping_integration }
   
   context 'Validations' do
     it 'has a valid factory' do
@@ -41,6 +41,27 @@ describe Spree::GoogleShoppingIntegration do
     it 'validates presence of active' do
       subject.active = nil
       expect(subject).to_not be_valid
+    end
+  end
+  
+  describe '#products' do
+    context 'when a products_scope is defined' do
+      let(:products_scope) { build_stubbed(:taxon) }
+      before(:each) { subject.products_scope = products_scope }
+      
+      it 'returns products from the products_scope' do
+        expect(products_scope).to receive(:products)
+        subject.products  
+      end
+    end
+    
+    context 'when a products_scope is not defined' do
+      before(:each) { subject.products_scope = nil }
+      
+      it 'returns all products' do
+        expect(Spree::Product).to receive(:all)  
+        subject.products  
+      end
     end
   end
 end
