@@ -20,6 +20,24 @@ module SpreeGoogleShopping
       connect!
     end
     
+    def insert(params)
+      api_client.execute(
+        api_method: shopping_api.products.insert,
+        parameters: opts[:params],
+        body_object: params
+      )
+    end
+    
+    def batch_operation(params)
+      api_client.execute(
+        api_method: shopping_api.products.custombatch,
+        parameters: opts[:params],
+        body_object: {
+          entries: params
+        }
+      )
+    end
+    
     private
     
     def connect!
