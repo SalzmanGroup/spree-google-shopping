@@ -17,4 +17,13 @@ class Spree::GoogleShoppingIntegration < ActiveRecord::Base
   def products
     products_scope.try(:products) || Spree::Product.all
   end
+  
+  def client
+    @_client ||= SpreeGoogleShopping::Client.new(
+      params: {
+        merchantId: merchant_id,
+        dryRun: test?
+      }
+    )
+  end
 end

@@ -2,7 +2,7 @@ require 'google/api_client'
 
 module SpreeGoogleShopping
   class Client
-    REQUIRED_ATTRIBUTES = %i{merchant_id private_key_password service_account_email}
+    REQUIRED_ATTRIBUTES = %i{private_key_password service_account_email}
     SCOPE = 'https://www.googleapis.com/auth/content'
     API_VERSION = 'v2'
     

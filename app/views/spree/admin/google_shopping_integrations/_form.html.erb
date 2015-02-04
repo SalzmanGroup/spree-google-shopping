@@ -4,6 +4,14 @@
       <%= label_tag nil, Spree.t(:name) %>
       <%= text_field :google_shopping_integration, :name, :class => 'fullwidth' %>
     </div>
+    <div data-hook="version" class="field">
+      <%= label_tag nil, Spree.t(:version) %>
+      <%= text_field :google_shopping_integration, :version, :class => 'fullwidth' %>
+    </div>
+    <div data-hook="url" class="field">
+      <%= label_tag nil, Spree.t(:url) %>
+      <%= text_field :google_shopping_integration, :url, :class => 'fullwidth' %>
+    </div>
     <div data-hook="merchant_id" class="field">
       <%= label_tag nil, Spree.t(:merchant_id) %>
       <%= text_field :google_shopping_integration, :merchant_id, :class => 'fullwidth' %>
@@ -31,6 +39,19 @@
         </li>
         <li>
           <%= radio_button(:google_shopping_integration, :active, false) %>
+          <%= Spree.t(:say_no) %>
+        </li>
+      </ul>
+    </div>
+    <div data-hook="test" class="field">
+      <%= label_tag nil, Spree.t(:test) %>
+      <ul>
+        <li>
+          <%= radio_button(:google_shopping_integration, :test, true) %>
+          <%= Spree.t(:say_yes) %>
+        </li>
+        <li>
+          <%= radio_button(:google_shopping_integration, :test, false) %>
           <%= Spree.t(:say_no) %>
         </li>
       </ul>
