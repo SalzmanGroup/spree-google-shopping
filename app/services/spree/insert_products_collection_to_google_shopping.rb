@@ -8,7 +8,7 @@ module Spree
       @google_shopping_items = GoogleShoppingItem.wrap(variants)
       @google_shopping_integration = google_shopping_integration
       entries = @google_shopping_items.map { |item| bulk_attributes(item) }
-      google_shopping_client.batch_operation(entries)
+      success?(google_shopping_client.batch_operation(entries))
     end
     
     private
@@ -33,6 +33,10 @@ module Spree
     
     def self.route_helpers
       Spree::Core::Engine.routes.url_helpers
+    end
+    
+    def self.success?(message)
+      message.response.status == 200
     end
   end
 end
