@@ -6,6 +6,7 @@ class AddGoogleShoppingAttributesToSpreeVariants < ActiveRecord::Migration
     add_column :spree_variants, :gs_adwords_redirect, :string
     add_column :spree_variants, :gs_age_group, :string
     add_column :spree_variants, :gs_brand, :string
+    add_column :spree_variants, :gs_color, :string
     add_column :spree_variants, :gs_condition, :string
     add_column :spree_variants, :gs_gender, :string
     add_column :spree_variants, :gs_gtin, :string
