@@ -5,7 +5,7 @@ module Spree
       @variant = variant
       @google_shopping_item = GoogleShoppingItem.new(@variant)
       @google_shopping_integration = google_shopping_integration
-      google_shopping_client.insert(base_attributes.merge(@google_shopping_item.to_request))
+      success?(google_shopping_client.insert(base_attributes.merge(@google_shopping_item.to_request)))
     end
     
     private
@@ -25,6 +25,10 @@ module Spree
     
     def self.route_helpers
       Spree::Core::Engine.routes.url_helpers
+    end
+    
+    def self.success?(message)
+      message.response.status == 200
     end
   end
 end

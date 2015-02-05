@@ -10,6 +10,8 @@ class Spree::GoogleShoppingIntegration < ActiveRecord::Base
   validates :target_country, presence: true
   validates :active, presence: true
   
+  scope :active, -> { where(active: true) }
+  
   def self.channel_options
     CHANNELS
   end
