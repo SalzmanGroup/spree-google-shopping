@@ -2,6 +2,35 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  activerecord:
+    attributes:
+      spree/variant:
+        gs_adult: Adult Content?
+        gs_adwords_grouping: Adwords Grouping
+        gs_adwords_labels: Adwords Labels
+        gs_adwords_redirect: Adwords Redirect
+        gs_age_group: Age Group
+        gs_brand: Brand
+        gs_color: Color
+        gs_condition: Condition
+        gs_gender: Gender
+        gs_gtin: GTIN/UPC
+        gs_bundle: Bundle?
+        gs_material: Material
+        gs_online_only: Online Only?
+        gs_pattern: Pattern
+      spree/google_shopping_integrations:
+        name: Application Name
+        version: Application Version
+        merchant_id: Merchant ID
+        channel: Channel
+        content_language: Language
+        target_country: Target Country
+        url: URL
+        active: Active?
+        test: Test?
+      spree/taxons:
+        google_shopping_category: Google Shopping Category
   spree:
     merchant_id: Merchant ID
   spree_google_shopping_client:
