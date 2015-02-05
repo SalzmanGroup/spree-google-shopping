@@ -3,9 +3,13 @@ namespace :spree_google_shopping do
     Spree::GoogleShoppingIntegration.active.each do |integration|
       puts "Inserting products for #{integration.name}"
       begin
-        Spree::InsertProductsCollectionToGoogleShopping.call(integration.products, integration)
+        if Spree::InsertProductsCollectionToGoogleShopping.call(integration.products, integration)
+          puts "-- Success!"
+        else
+          puts "The server returned an error when attempting to insert"
+        end
       rescue StandardError => e
-        puts "Failed to import due to exceptions: #{e.message}"
+        puts "Failed to insert due to exceptions: #{e.message}"
       end
     end
   end
