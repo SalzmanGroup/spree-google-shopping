@@ -1,0 +1,32 @@
+<%= render 'spree/admin/shared/configuration_menu' %>
+
+<% content_for :page_title do %>
+  <%= Spree.t(:google_shopping_categories) %>
+<% end %>
+
+<p>
+  Please refer to the <a href="https://support.google.com/merchants/answer/160081?hl=en" target="_blank">
+  Google Shopping Documentation</a> for a list of valid categories to associate with taxons
+</p>
+
+<%= form_tag update_many_admin_google_shopping_categories_path, method: :put do %>
+  <table> 
+    <thead>
+      <th>Taxonomy</th>
+      <th>Taxon</th>
+      <th><%= Spree.t :google_shopping_category %></th>
+    </thead>
+    <% @taxonomies.each do |taxonomy| %>
+      <% taxonomy.taxons.each do |taxon| %>
+        <%= fields_for "taxons[#{taxon.id}]", taxon do |f| %>
+          <tr>
+            <td><%= taxonomy.name %></td>
+            <td><%= taxon.name %></td>
+            <td><%= f.text_field :google_shopping_category %></td>
+          </tr>
+        <% end -%>
+      <% end -%>
+    <% end -%>
+  </table>
+  <%= submit_tag %>
+<% end -%>

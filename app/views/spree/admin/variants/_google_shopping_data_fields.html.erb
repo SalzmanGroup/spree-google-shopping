@@ -1,0 +1,91 @@
+
+<fieldset>
+  <legend align="center"><%= Spree.t(:google_shopping_data) %></legend>
+  
+  <div data-hook="admin_stock_movements_form_fields" class="row">
+    <div class="alpha six columns">
+      <div class="field" data-hook="gs_adult"> 
+        <%= f.label :gs_adult, Spree.t(:gs_adult) %>
+        <ul>
+          <li>
+            <%= f.radio_button(:gs_adult, true) %>
+            <%= Spree.t(:say_yes) %>
+          </li>
+          <li>
+            <%= f.radio_button(:gs_adult, false) %>
+            <%= Spree.t(:say_no) %>
+          </li>
+        </ul>
+      </div>
+      <div class="field" data-hook="gs_adwords_grouping"> 
+        <%= f.label :gs_adwords_grouping, Spree.t(:gs_adwords_grouping) %>
+        <%= f.text_field :gs_adwords_grouping, :class => 'fullwidth' %>
+      </div>
+      <div class="field" data-hook="gs_adwords_labels"> 
+        <%= f.label :gs_adwords_labels, Spree.t(:gs_adwords_labels) %>
+        <%= f.text_field :gs_adwords_labels, :class => 'fullwidth' %>
+      </div>
+      <div class="field" data-hook="gs_adwords_redirect"> 
+        <%= f.label :gs_adwords_redirect, Spree.t(:gs_adwords_redirect) %>
+        <%= f.text_field :gs_adwords_redirect, :class => 'fullwidth' %>
+      </div>
+      <div class="field" data-hook="gs_age_group"> 
+        <%= f.label :gs_age_group, Spree.t(:gs_age_group) %>
+        <%= f.text_field :gs_age_group, :class => 'fullwidth' %>
+      </div>
+      <div class="field" data-hook="gs_brand"> 
+        <%= f.label :gs_brand, Spree.t(:gs_brand) %>
+        <%= f.text_field :gs_brand, :class => 'fullwidth' %>
+      </div>
+      <div class="field" data-hook="gs_condition"> 
+        <%= f.label :gs_condition, Spree.t(:gs_condition) %>
+        <%= f.text_field :gs_condition, :class => 'fullwidth' %>
+      </div>
+    </div>
+
+    <div class="six columns omega">
+      <div class="field" data-hook="gs_gender"> 
+        <%= f.label :gs_gender, Spree.t(:gs_gender) %>
+        <%= f.text_field :gs_gender, :class => 'fullwidth' %>
+      </div>
+      <div class="field" data-hook="gs_gtin"> 
+        <%= f.label :gs_gtin, Spree.t(:gs_gtin) %>
+        <%= f.text_field :gs_gtin, :class => 'fullwidth' %>
+      </div>
+      <div class="field" data-hook="gs_bundle"> 
+        <%= f.label :gs_bundle, Spree.t(:gs_bundle) %>
+        <ul>
+          <li>
+            <%= f.radio_button(:gs_bundle, true) %>
+            <%= Spree.t(:say_yes) %>
+          </li>
+          <li>
+            <%= f.radio_button(:gs_bundle, false) %>
+            <%= Spree.t(:say_no) %>
+          </li>
+        </ul>
+      </div>
+      <div class="field" data-hook="gs_material"> 
+        <%= f.label :gs_material, Spree.t(:gs_material) %>
+        <%= f.text_field :gs_material, :class => 'fullwidth' %>
+      </div>
+      <div class="field" data-hook="gs_online_only"> 
+        <%= f.label :gs_online_only, Spree.t(:gs_online_only) %>
+        <ul>
+          <li>
+            <%= f.radio_button(:gs_online_only, true) %>
+            <%= Spree.t(:say_yes) %>
+          </li>
+          <li>
+            <%= f.radio_button(:gs_online_only, false) %>
+            <%= Spree.t(:say_no) %>
+          </li>
+        </ul>
+      </div>
+      <div class="field" data-hook="gs_pattern"> 
+        <%= f.label :gs_pattern, Spree.t(:gs_pattern) %>
+        <%= f.text_field :gs_pattern, :class => 'fullwidth' %>
+      </div>
+    </div>
+  </div>
+</fieldset>

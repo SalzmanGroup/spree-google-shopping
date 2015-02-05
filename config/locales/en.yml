@@ -2,4 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  spree:
+    merchant_id: Merchant ID
+  spree_google_shopping_client:
+    missing_attributes: "The following attributes are required: %{attributes}"
