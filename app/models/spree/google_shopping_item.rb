@@ -5,7 +5,6 @@ module Spree
       gs_additional_image_links
       gs_availability
       gs_availability_date
-      gs_color
       gs_description
       gs_google_product_category
       gs_identifier_exists
@@ -22,6 +21,7 @@ module Spree
       gs_adwords_redirect
       gs_age_group
       gs_brand
+      gs_color
       gs_condition
       gs_gender
       gs_gtin
@@ -65,10 +65,6 @@ module Spree
     
     def gs_availability_date
       product.available_on.try(:iso8601)
-    end
-    
-    def gs_color
-      product.product_properties.where(property_id: Spree::Product.color_property_id).pluck(:value).first
     end
     
     def gs_description
