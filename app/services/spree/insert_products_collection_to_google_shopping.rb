@@ -2,7 +2,7 @@ module Spree
   class InsertProductsCollectionToGoogleShopping
     
     def self.call(products, google_shopping_integration)
-      variants = products.includes(:variants, :master, :taxons).flat_map do |p|
+      variants = products.includes(:taxons, master: [:images, :stock_items, :default_price], variants: [:images, :stock_items, :default_price]).flat_map do |p|
         p.variants.any? ? p.variants : p.master
       end
       @google_shopping_items = GoogleShoppingItem.wrap(variants)
