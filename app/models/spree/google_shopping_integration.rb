@@ -3,6 +3,8 @@ class Spree::GoogleShoppingIntegration < ActiveRecord::Base
   
   belongs_to :products_scope, polymorphic: true
   
+  has_and_belongs_to_many :taxons
+  
   validates :name, presence: true
   validates :merchant_id, presence: true
   validates :channel, presence: true, inclusion: { in: CHANNELS }
