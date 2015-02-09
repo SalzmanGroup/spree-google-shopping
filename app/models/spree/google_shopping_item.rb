@@ -64,7 +64,7 @@ module Spree
     end
     
     def gs_availability_date
-      product.available_on.try(:iso8601)
+      (product.available_on || 100.years.from_now).iso8601
     end
     
     def gs_description
