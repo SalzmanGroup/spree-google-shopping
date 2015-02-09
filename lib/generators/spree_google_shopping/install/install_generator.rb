@@ -5,6 +5,7 @@ module SpreeGoogleShopping
       class_option :auto_run_migrations, :type => :boolean, :default => false
 
       def add_javascripts
+        append_file 'vendor/assets/javascripts/spree/backend/all.js', "//= require spree/backend/spree_google_shopping\n"
       end
 
       def add_stylesheets

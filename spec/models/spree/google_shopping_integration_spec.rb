@@ -3,6 +3,12 @@ require 'spec_helper'
 describe Spree::GoogleShoppingIntegration do
   subject { build_stubbed :google_shopping_integration }
   
+  it 'has many taxons' do
+    expect(
+      described_class.reflect_on_all_associations(:has_and_belongs_to_many).map(&:name)
+    ).to include(:taxons)
+  end
+  
   context 'Validations' do
     it 'has a valid factory' do
       expect(subject).to be_valid
@@ -61,6 +67,19 @@ describe Spree::GoogleShoppingIntegration do
       it 'returns all products' do
         expect(Spree::Product).to receive(:all)  
         subject.products  
+      end
+    end
+    
+    context 'when the integration has taxons' do
+      let(:taxons) { create_list(:taxon, 2, products: create_list(:product, 2)) }
+      before(:each) do 
+        subject.taxons = taxons 
+      end
+      
+      it 'scopes by taxons' do
+        loose_products = create_list(:product, 2)
+        expect(subject.products).to_not be_empty
+        expect(subject.products & loose_products).to be_empty
       end
     end
   end
