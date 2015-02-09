@@ -19,7 +19,12 @@ class Spree::GoogleShoppingIntegration < ActiveRecord::Base
   end
   
   def products
-    scoped_by_taxons(products_scope.try(:products) || Spree::Product.all)
+    products = products_scope.try(:products) || Spree::Product.all
+    if taxons.any?
+      products.includes(:taxons).where(spree_taxons: { id: taxon_ids })
+    else
+      products
+    end
   end
   
   def client
@@ -29,15 +34,5 @@ class Spree::GoogleShoppingIntegration < ActiveRecord::Base
         dryRun: test?
       }
     )
-  end
-  
-  private
-  
-  def scoped_by_taxons(products)
-    if taxons.any? 
-      products.includes(:taxons).where(spree_taxons: { id: taxons })
-    else
-      products
-    end
   end
 end
