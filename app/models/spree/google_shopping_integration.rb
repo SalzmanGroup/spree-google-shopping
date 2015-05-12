@@ -29,14 +29,14 @@ class Spree::GoogleShoppingIntegration < ActiveRecord::Base
 
   def client
     @_client ||= SpreeGoogleShopping::Client.new(
+      private_key_path: private_key_path,
+      private_key_password: private_key_password,
+      service_account_email: service_account_email,
+      application_name: name,
+      application_version: version,
       params: {
         merchantId: merchant_id,
         dryRun: test?,
-        private_key_path: private_key_path,
-        private_key_password: private_key_password,
-        service_account_email: service_account_email,
-        application_name: name,
-        application_version: version,
       }
     )
   end
