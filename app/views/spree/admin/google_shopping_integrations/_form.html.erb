@@ -30,6 +30,18 @@
     </div>
   </div>
   <div class="omega four columns">
+    <div data-hook="private_key_path" class="field">
+      <%= label_tag nil, Spree.t(:private_key_path) %>
+      <%= text_field :google_shopping_integration, :private_key_path, :class => 'fullwidth' %>
+    </div>
+    <div data-hook="private_key_password" class="field">
+      <%= label_tag nil, Spree.t(:private_key_password) %>
+      <%= text_field :google_shopping_integration, :private_key_password, :class => 'fullwidth' %>
+    </div>
+    <div data-hook="service_account_email" class="field">
+      <%= label_tag nil, Spree.t(:service_account_email) %>
+      <%= text_field :google_shopping_integration, :service_account_email, :class => 'fullwidth' %>
+    </div>
     <div data-hook="active" class="field">
       <%= label_tag nil, Spree.t(:active) %>
       <ul>
@@ -56,7 +68,7 @@
         </li>
       </ul>
     </div>
-    
+
     <div data-hook="admin_product_form_taxons">
       <%= field_container :google_shopping_integration, :taxons do %>
         <%= label :google_shopping_integration, :taxon_ids, Spree.t(:taxons) %><br />
@@ -64,9 +76,9 @@
       <% end %>
     </div>
   </div>
-  
+
   <div class="clear"></div>
 
   <div data-hook="additional_google_shopping_integration_fields"></div>
-  
+
 </div>

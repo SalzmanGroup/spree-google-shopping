@@ -8,7 +8,7 @@ namespace :spree_google_shopping do
       while (i * batch_size) < product_count 
         begin
           puts "-- Batch #{i + 1}"
-          if Spree::InsertProductsCollectionToGoogleShopping.call(integration.products.limit([i, batch_size].join(',')), integration)
+          if Spree::InsertProductsCollectionToGoogleShopping.call(integration.products.limit([i * batch_size, batch_size].join(',')), integration)
             puts "-- Success!"
           else
             puts "The server returned an error when attempting to insert"

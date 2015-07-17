@@ -21,7 +21,7 @@ module SpreeGoogleShopping
     end
     
     def insert(params)
-      api_client.execute(
+      log_message api_client.execute(
         api_method: shopping_api.products.insert,
         parameters: opts[:params],
         body_object: params
@@ -29,7 +29,7 @@ module SpreeGoogleShopping
     end
     
     def batch_operation(params)
-      api_client.execute(
+      log_message api_client.execute(
         api_method: shopping_api.products.custombatch,
         parameters: opts[:params],
         body_object: {
@@ -39,6 +39,12 @@ module SpreeGoogleShopping
     end
     
     private
+
+    def log_message(message)
+      logger = Logger.new('log/spree_google_shopping.log')
+      logger.info message.response
+      message
+    end
     
     def connect!
       @api_client = Google::APIClient.new(
