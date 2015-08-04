@@ -30,13 +30,14 @@ module Spree
         })
       }
     end
-    
-    def self.determine_action(google_shopping_item){
+  
+    def self.determine_action(google_shopping_item)
       if google_shopping_item.product.available_on.nil? || google_shopping_item.product.available_on > Time.now
         'delete'
       else
         'insert'
-    }
+      end
+    end
     
     def self.route_helpers
       Spree::Core::Engine.routes.url_helpers
