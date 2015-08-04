@@ -21,7 +21,7 @@ module Spree
       {
         merchantId: @google_shopping_integration.merchant_id,
         batchId: google_shopping_item.id, 
-        method: 'insert',
+        method: determine_action(google_shopping_item),
         product: google_shopping_item.to_request.merge({
           channel: @google_shopping_integration.channel,
           contentLanguage: @google_shopping_integration.content_language,
@@ -30,6 +30,13 @@ module Spree
         })
       }
     end
+    
+    def self.determine_action(google_shopping_item){
+      if google_shopping_item.product.available_on.nil? || google_shopping_item.product.available_on > Time.now
+        'delete'
+      else
+        'insert'
+    }
     
     def self.route_helpers
       Spree::Core::Engine.routes.url_helpers
