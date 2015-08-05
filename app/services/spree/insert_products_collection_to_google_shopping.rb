@@ -18,17 +18,28 @@ module Spree
     end
     
     def self.bulk_attributes(google_shopping_item)
-      {
-        merchantId: @google_shopping_integration.merchant_id,
-        batchId: google_shopping_item.id, 
-        method: determine_action(google_shopping_item),
-        product: google_shopping_item.to_request.merge({
-          channel: @google_shopping_integration.channel,
-          contentLanguage: @google_shopping_integration.content_language,
-          targetCountry: @google_shopping_integration.target_country,
-          link: [@google_shopping_integration.url, route_helpers.product_path(google_shopping_item.product)].join
-        })
-      }
+      method = determine_action(google_shopping_item)
+      
+      if method == 'delete'
+        {
+          merchantId: @google_shopping_integration.merchant_id,
+          batchId: google_shopping_item.id, 
+          method: method,
+          productId: google_shopping_item.product.sku
+        }
+      else
+        {
+          merchantId: @google_shopping_integration.merchant_id,
+          batchId: google_shopping_item.id, 
+          method: method,
+          product: google_shopping_item.to_request.merge({
+            channel: @google_shopping_integration.channel,
+            contentLanguage: @google_shopping_integration.content_language,
+            targetCountry: @google_shopping_integration.target_country,
+            link: [@google_shopping_integration.url, route_helpers.product_path(google_shopping_item.product)].join
+          })
+        }
+      end
     end
   
     def self.determine_action(google_shopping_item)
