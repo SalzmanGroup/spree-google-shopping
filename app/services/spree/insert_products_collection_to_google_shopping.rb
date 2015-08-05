@@ -23,11 +23,8 @@ module Spree
       if method == 'delete'
         {
           merchantId: @google_shopping_integration.merchant_id,
-          batchId: google_shopping_item.id, 
           method: method,
-          product: google_shopping_item.to_request.merge({
-            productId: 'online:en:US:' + google_shopping_item.product.sku
-          })
+          productId: 'online:en:US:' + google_shopping_item.product.sku
         }
       else
         {
