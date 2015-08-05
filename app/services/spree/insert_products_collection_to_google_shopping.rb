@@ -25,7 +25,7 @@ module Spree
           merchantId: @google_shopping_integration.merchant_id,
           batchId: google_shopping_item.id, 
           method: method,
-          productId: google_shopping_item.product.sku
+          productId: 'online:en:US:'+google_shopping_item.product.sku
         }
       else
         {
