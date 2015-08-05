@@ -10,7 +10,6 @@ namespace :spree_google_shopping do
           puts "-- Batch #{i + 1}"
           products = integration.products
           if Spree::InsertProductsCollectionToGoogleShopping.call(products.limit([i * batch_size, batch_size].join(',')), integration)
-            puts products.limit([i * batch_size, batch_size].join(','))
             puts "-- Success!"
           else
             puts "The server returned an error when attempting to insert"
