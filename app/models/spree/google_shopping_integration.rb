@@ -23,7 +23,7 @@ class Spree::GoogleShoppingIntegration < ActiveRecord::Base
     if taxons.any?
       products.includes(:taxons).where(spree_taxons: { id: taxon_ids })
     else
-      products
+      []
     end
   end
 
