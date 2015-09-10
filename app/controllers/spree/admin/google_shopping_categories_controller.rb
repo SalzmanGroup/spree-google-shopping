@@ -4,7 +4,7 @@ module Spree
       def index
         @taxonomies = Taxonomy.includes(:taxons).all
       end
-      
+
       def update_many
         @taxons = Taxon.update(params[:taxons].keys, params[:taxons].values).reject { |t| t.errors.empty? }
         if @taxons.empty?
