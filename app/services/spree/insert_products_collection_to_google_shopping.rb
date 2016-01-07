@@ -8,7 +8,15 @@ module Spree
       @google_shopping_items = GoogleShoppingItem.wrap(variants)
       @google_shopping_integration = google_shopping_integration
       entries = @google_shopping_items.map { |item| bulk_attributes(item) }
-      success?(google_shopping_client.batch_operation(entries))
+      r = google_shopping_client.batch_operation(entries)
+
+      if success?(r)
+        true
+      else
+        errors = JSON.parse r.response.body        
+        puts errors.inspect
+        false
+      end
     end
 
     private
@@ -21,9 +29,9 @@ module Spree
       {
         merchantId: @google_shopping_integration.merchant_id,
         batchId: google_shopping_item.id,
-        isBundle: google_shopping_item.gs_bundle,
         method: 'insert',
         product: google_shopping_item.to_request.merge({
+          isBundle: google_shopping_item.bundle?,
           channel: @google_shopping_integration.channel,
           contentLanguage: @google_shopping_integration.content_language,
           targetCountry: @google_shopping_integration.target_country,
