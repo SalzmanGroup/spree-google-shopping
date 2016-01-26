@@ -68,13 +68,6 @@
         </li>
       </ul>
     </div>
-
-    <div data-hook="admin_product_form_taxons">
-      <%= field_container :google_shopping_integration, :taxons do %>
-        <%= label :google_shopping_integration, :taxon_ids, Spree.t(:taxons) %><br />
-        <%= hidden_field :google_shopping_integration, :taxon_ids, :value => @object.taxon_ids.join(',') %>
-      <% end %>
-    </div>
   </div>
 
   <div class="clear"></div>
