@@ -19,12 +19,7 @@ class Spree::GoogleShoppingIntegration < ActiveRecord::Base
   end
 
   def products
-    products = products_scope.try(:products) || Spree::Product.all
-    if taxons.any?
-      products.includes(:taxons).where(spree_taxons: { id: taxon_ids })
-    else
-      products
-    end
+    Spree::Product.where :gs_enabled => true
   end
 
   def client
